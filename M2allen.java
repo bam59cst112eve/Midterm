@@ -1,7 +1,8 @@
 
 
 String title=  "CST112 MIDTERM EXAM";
-String news=   "Click any ball to reset it to right half of table.  (r resets all.)";
+String news= "Click any ball to reset it to right half of table. (r resets all.)";
+String control= " '1' resets blue, '2' resets red '3' resets yellow";
 String author=  "William Allen";
 
 float left=50, right=450, top=100, bottom=250;        // Table boundaries
@@ -19,6 +20,7 @@ float temp;
 float wallwidth;
 float wallLeft;
 float wallRight;
+float ballDiameter;
 
 boolean wall;
 
@@ -36,6 +38,7 @@ void reset(){
  wall=true;
  wallLeft=(width/2-wallwidth);
  wallRight=(width/2+wallwidth);
+ ballDiameter=30;
 }
 
 ///SetUp
@@ -67,17 +70,17 @@ messages();
 void balls(){
  ///jim ball
 fill(250,0,0); 
-ellipse(jimX,jimY,30,30);
+ellipse(jimX,jimY,ballDiameter,ballDiameter);
 fill(255);
 text("2",jimX,jimY);
 ///war
 fill(0,0,250); 
-ellipse(warX,warY,30,30);
+ellipse(warX,warY,ballDiameter,ballDiameter);
 fill(255);
 text("1",warX,warY);
 ///aimlow ball
 fill(252,255,88); 
-ellipse(aimX,aimY,30,30);
+ellipse(aimX,aimY,ballDiameter,ballDiameter);
 fill(0);
 text("3",aimX,aimY);
 }
@@ -140,6 +143,7 @@ void messages() {
   text( title, width/3, 15 );
   text( news, width/9, 30 );
   text( author, 10, height-5 );
+  text( control, width/12, 45);
 }
 
 
@@ -180,4 +184,14 @@ void keyPressed() {
   resetAim();
   }
   
+}
+
+void mousePressed(){
+  if(dist(mouseX,mouseY,warX,warY) <ballDiameter/2){
+   resetWar();}
+ if(dist(mouseX,mouseY,jimX,jimY) <ballDiameter/2){
+   resetJim();}
+  if(dist(mouseX,mouseY,aimX,aimY) <ballDiameter/2){
+   resetAim();}
+ 
 }
