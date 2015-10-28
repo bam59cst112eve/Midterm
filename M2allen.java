@@ -17,31 +17,32 @@ float warDX,warDY;
 float aimDX,aimDY;
 float temp;
 float wallwidth;
+float wallLeft;
+float wallRight;
 
 boolean wall;
 
-///SetUp
-void setup(){
- size(700,500);
-  
+
+void reset(){
+ 
  rightScreen=width-20;
  bottomScreen=height-60;
  topScreen=100;
  leftScreen=20;
- jimX=random(leftScreen,rightScreen);
- jimY=random(topScreen,bottomScreen);
- warX=random(leftScreen,rightScreen);
- warY=random(topScreen,bottomScreen);
- aimX=random(leftScreen,rightScreen);
- aimY=random(topScreen,bottomScreen);
- jimDX=random(-2,2);
- jimDY=random(-2,2);
- warDX=random(-2,2);
- warDY=random(-2,2);
- aimDX=random(-2,2);
- aimDY=random(-2,2);
+ resetJim();
+ resetWar();
+ resetAim();
  wallwidth=30;
  wall=true;
+ wallLeft=(width/2-wallwidth);
+ wallRight=(width/2+wallwidth);
+}
+
+///SetUp
+void setup(){
+ size(700,500);
+  reset();
+ 
 }
 
 void draw(){
@@ -107,6 +108,11 @@ void bounce() {
  }
  if(aimY>bottomScreen || aimY<topScreen) {
    aimDY*=-1;}
+ if(wall==true){ 
+   if(jimX<wallRight){jimDX*=-1;}
+   if(warX<wallRight){warDX*=-1;}
+   if(aimX<wallRight){aimDX*=-1;}
+ }
 }
 /// Collisions
 void ballcollide() {
@@ -126,7 +132,7 @@ if(dist(aimX,aimY,warX,warY)<30){
 ////WALL
 void wall(){
   if(wall == true){fill(254,255,6);
-  rect(width/2-wallwidth, topScreen, width/2+wallwidth, bottomScreen);}
+  rect(wallLeft, topScreen, wallRight, bottomScreen);}
 }
 /// Messages
 void messages() {
@@ -136,27 +142,26 @@ void messages() {
   text( author, 10, height-5 );
 }
 
-void reset(){
- 
- rightScreen=width-20;
- bottomScreen=height-60;
- topScreen=100;
- leftScreen=20;
- jimX=random(leftScreen,rightScreen);
+
+///Ball Reset
+void resetJim(){
+ jimX=random(width/2+wallwidth,rightScreen);
  jimY=random(topScreen,bottomScreen);
- warX=random(leftScreen,rightScreen);
- warY=random(topScreen,bottomScreen);
- aimX=random(leftScreen,rightScreen);
- aimY=random(topScreen,bottomScreen);
  jimDX=random(-2,2);
  jimDY=random(-2,2);
+}
+void resetWar(){
+ warX=random(width/2+wallwidth,rightScreen);
+ warY=random(topScreen,bottomScreen); 
  warDX=random(-2,2);
  warDY=random(-2,2);
+}
+void resetAim(){
+ aimX=random(width/2+wallwidth,rightScreen);
+ aimY=random(topScreen,bottomScreen);
  aimDX=random(-2,2);
  aimDY=random(-2,2);
- wall=true;
 }
-
 ///Handlers: KEYS
 void keyPressed() {
   if (key == 'r') {
@@ -165,4 +170,14 @@ void keyPressed() {
   if (key == 'w') { 
   wall=false;
   }
+   if (key== '1')  {
+  resetWar();
+  }
+  if (key== '2')  {
+  resetJim();
+  }
+   if (key== '3')  {
+  resetAim();
+  }
+  
 }
