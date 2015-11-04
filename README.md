@@ -9,11 +9,15 @@ Practice exercise X5 (and Project 2) - bouncing balls on pool table.
 Starting from scratch; with new specifications, restrictions, and coding requirements.  
 Open book; you may view previous code, but do not **copy** any of it.
 
-**M2:**  Take-home (due in one week.)  
+       For instructions, run the file "instructions.java"
+       For a demonstration, run the file "midterm-demo.java"
+
+**M2:**  Take-home (due in one week:  10/28.)  
 Additional requirements.
 
-**M3:**  In-class 10/28  
-Use classes:  Ball & Bird.  
-Further modifications to M2 takehome code.
+
+              **M3:**  In-class 10/28 -- cancelled.
+              There is no M3; it will be replaced by Project #3.
+
 
 
