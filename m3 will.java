@@ -1,4 +1,5 @@
-
+// PLEASE start code files with comments that state your name (and the purpose of this file).
+// ALSO, please "follow" me at http://github/bam59cst112eve 
 
 String title=  "CST112 MIDTERM EXAM";
 String news= "Click any ball to reset it to right half of table. (r resets all.)";
